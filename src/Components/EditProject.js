@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import toastr from 'toastr';
-//comment
 
 class ProjectList extends Component {
   constructor(){
