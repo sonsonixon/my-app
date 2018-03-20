@@ -17,6 +17,7 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
+
 }
 
 const store = createStore(reducer);

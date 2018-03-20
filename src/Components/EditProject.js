@@ -14,7 +14,7 @@ class ProjectList extends Component {
     }
   }
 
-  getItem(){
+  getProject(){
 
     const { params } = this.props.match;
     const id = params.id;
@@ -33,11 +33,30 @@ class ProjectList extends Component {
   }
 
   componentWillMount(){
-
+    this.getProject();
   }
 
   componentDidMount(){
-    this.getItem();
+
+  }
+
+  handleTitleChange(event) {
+    const item = this.state.projectItem;
+    item.title = event.target.value;
+
+    this.setState({projectItem: item}, function(){
+      console.log(this.state)
+    });
+
+  }
+
+  handleCategoryChange(event) {
+    const item = this.state.projectItem;
+    item.category = event.target.value;
+
+    this.setState({projectItem: item}, function(){
+      console.log(this.state)
+    });
   }
 
   handleUpdate(e){
@@ -53,8 +72,6 @@ class ProjectList extends Component {
       toastr.warning('<span class="lead">Category is empty</span>', 'WARNING!');
     }
     else {
-
-
 
       /*
         var data = new FormData($('#form-update')[0]);
@@ -113,11 +130,10 @@ class ProjectList extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    id="title"
-                    name="title"
                     value = {this.state.projectItem.title}
                     placeholder="Enter Title..."
                     ref = {(input) => this.title = input }
+                    onChange={this.handleTitleChange.bind(this)}
                   />
                 </div>
               </div>
@@ -128,11 +144,10 @@ class ProjectList extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    id="category"
-                    name="category"
                     value = {this.state.projectItem.category}
                     placeholder="Enter Category..."
                     ref = {(input) => this.category = input }
+                    onChange={this.handleCategoryChange.bind(this)}
                   />
                 </div>
               </div>
