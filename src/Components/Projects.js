@@ -5,18 +5,28 @@ import ReactTable from "react-table";
 import swal from 'sweetalert';
 
 class Projects extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       projects: [],
-      project: [],
+      projectItem: []
     };
 
   }
 
   componentWillMount(){
     this.setState({projects: this.props.projects})
+  }
+
+  onUpdate = (id) => {
+    this.setState({
+      projectItem: this.state.projects.find(p => p.id === id)
+    }, function(){
+      this.props.updateProject(this.state.projectItem);
+      this.props.history.push('projects/update')
+    })﻿
+
   }
 
   onDelete = (id) => {
@@ -69,7 +79,7 @@ class Projects extends Component {
                   <div className="text-center">
                     <Link className="btn btn-success" to={"/projects/list/" + d.id} ><i className="fa fa-fw fa-eye"></i></Link>
                     &nbsp;&nbsp;
-                    <Link className="btn btn-info" to={"/projects/update/" + d.id}><i className="fa fa-fw fa-pencil"></i></Link>
+                    <button className="btn btn-info" onClick={this.onUpdate.bind(this, d.id)}><i className="fa fa-fw fa-pencil"></i></button>
                     &nbsp;&nbsp;
                     <button onClick={this.onDelete.bind(this, d.id)} className="btn btn-danger"><i className="fa fa-fw fa-trash"></i></button>
                   </div>

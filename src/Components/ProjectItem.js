@@ -14,7 +14,7 @@ class ProjectItem extends Component {
     const { params } = this.props.match;
     const id = params.id;
 
-    fetch('http://localhost/api/projects/get/'+id)
+    fetch('http://localhost:8080/api/projects/get/'+id)
       .then(response => response.json())
       .then(json => {
         this.setState({projectItem: json});

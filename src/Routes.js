@@ -15,11 +15,14 @@ import Counter from './Components/Counter';
 import Input from './Components/Input';
 
 class Routes extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
     this.state = {
-      projects: []
+      projects: [],
+      projectItem: []
     }
+
   }
 
   sortByKey(array, key) {
@@ -30,10 +33,12 @@ class Routes extends Component {
   }
 
   getData(){
-    fetch('http://localhost/api/projects/get')
+    fetch('http://localhost:8080/api/projects/get')
       .then(response => response.json())
       .then(json => {
-        this.setState({projects: json});
+        this.setState({projects: json}, function(){
+          console.log(this.state.projects)
+        });
       })
       .catch(function(err) {
         console.log('parsing failed', err)
@@ -50,15 +55,18 @@ class Routes extends Component {
     this.setState({projects:projects})
   }
 
-  handleupdateProject(project){
+  handleupdateProject(projectItem){
+    this.setState({projectItem: projectItem})﻿
+  }
+
+  /*handleupdateProject(project){
     this.setState({
       projects:this.state.projects.filter(p => p.id !== project.id)
     }, function(){
       this.state.projects.push(project);
       this.sortByKey(this.state.projects, 'id');
-      console.log(this.state);
     })﻿
-  }
+  }*/
 
   render() {
 
@@ -72,13 +80,14 @@ class Routes extends Component {
     const editProject = (props) => (
       <EditProject
         {...props}
-        updateProject={this.handleupdateProject.bind(this)}
+        projectItem={this.state.projectItem}
       />
     );
 
     const project = (props) => (
       <Projects
         {...props}
+        updateProject={this.handleupdateProject.bind(this)}
         projects={this.state.projects}
       />
     );
@@ -106,7 +115,7 @@ class Routes extends Component {
                 <Route exact path="/projects" component={project} />
                 <Route exact path="/projects/list/:id" component={ProjectItem} />
                 <Route exact path="/projects/add" component={addProject} />
-                <Route exact path="/projects/update/:id" component={editProject} />
+                <Route exact path="/projects/update" component={editProject} />
                 <Route path="/page1/:name" component={Page1} />
                 <Route path="/page2" component={Page2} />
                 <Route path="/redux/counter" component={counter} />

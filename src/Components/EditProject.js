@@ -10,37 +10,26 @@ class ProjectList extends Component {
     }
 
     this.state = {
-      projectItem: []
+      projectItem: {}
     }
   }
 
-  getProject(){
-
-    const { params } = this.props.match;
-    const id = params.id;
-
-    fetch('http://localhost/api/projects/get/'+id)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({projectItem: json}, function(){
-          console.log(this.state)
-        });
-      })
-      .catch(function(err) {
-        console.log('parsing failed', err)
-      })
+  componentWillMount = () => {
 
   }
 
-  componentWillMount(){
-    this.getProject();
-  }
-
-  componentDidMount(){
+  componentWillUnmount = () => {
 
   }
 
-  handleTitleChange(event) {
+  componentDidMount = () => {
+
+    this.setState({projectItem: this.props.projectItem}, function(){
+      console.log(this.state.projectItem)
+    })
+  }
+
+  handleTitleChange = (event) => {
     const item = this.state.projectItem;
     item.title = event.target.value;
 
@@ -50,7 +39,7 @@ class ProjectList extends Component {
 
   }
 
-  handleCategoryChange(event) {
+  handleCategoryChange = (event) => {
     const item = this.state.projectItem;
     item.category = event.target.value;
 
@@ -62,7 +51,9 @@ class ProjectList extends Component {
   handleUpdate(e){
     e.preventDefault();
 
-    const { params } = this.props.match;
+    console.log(this.state.projectItem)
+
+    /*const { params } = this.props.match;
     const id = params.id;
 
     if(this.title.value === ''){
@@ -73,7 +64,7 @@ class ProjectList extends Component {
     }
     else {
 
-      /*
+
         var data = new FormData($('#form-update')[0]);
 
             $.ajax({
@@ -110,8 +101,8 @@ class ProjectList extends Component {
         }
       }, function(){
         this.props.updateProject(this.state.projectItem);
-      })*/
-    }
+      })
+    }*/
 
   }
 
@@ -130,8 +121,8 @@ class ProjectList extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    value = {this.state.projectItem.title}
                     placeholder="Enter Title..."
+                    value={this.state.projectItem.title  || ''}
                     ref = {(input) => this.title = input }
                     onChange={this.handleTitleChange.bind(this)}
                   />
@@ -144,8 +135,8 @@ class ProjectList extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    value = {this.state.projectItem.category}
                     placeholder="Enter Category..."
+                    value={this.state.projectItem.category  || ''}
                     ref = {(input) => this.category = input }
                     onChange={this.handleCategoryChange.bind(this)}
                   />
