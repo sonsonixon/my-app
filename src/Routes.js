@@ -59,6 +59,12 @@ class Routes extends Component {
     this.setState({projectItem: projectItem})﻿
   }
 
+  handleDeleteProject(id){
+    this.setState({
+      projects: this.state.projects.filter(p => p.id !== id)
+    })
+  }
+
   /*handleupdateProject(project){
     this.setState({
       projects:this.state.projects.filter(p => p.id !== project.id)
@@ -89,6 +95,7 @@ class Routes extends Component {
         {...props}
         updateProject={this.handleupdateProject.bind(this)}
         projects={this.state.projects}
+        deleteProject={this.handleDeleteProject.bind(this)}
       />
     );
 

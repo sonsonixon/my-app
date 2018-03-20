@@ -10,7 +10,8 @@ class Projects extends Component {
 
     this.state = {
       projects: [],
-      projectItem: []
+      projectItem: [],
+      id: null,
     };
 
   }
@@ -34,17 +35,17 @@ class Projects extends Component {
       closeOnClickOutside: false,
       text: "Are you sure you want to delete this project?",
       icon: "warning",
-      buttons: true,
+      buttons: ["Cancel", "Yes, Delete"],
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
+        this.setState({id: id})
+        this.props.deleteProject(this.state.id);
         swal("Project has been deleted", {
           icon: "success",
-          button: "Back"
+          button: "Got it"
         });
-      } else {
-
       }
     });
   }
