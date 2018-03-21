@@ -24,8 +24,8 @@ class Projects extends Component {
     this.setState({
       projectItem: this.state.projects.find(p => p.id === id)
     }, function(){
-      this.props.updateProject(this.state.projectItem);
-      this.props.history.push('projects/update')
+      this.props.editProject(this.state.projectItem);
+      this.props.history.push('projects/update/'+id)
     })﻿
 
   }

@@ -10,6 +10,7 @@ class ProjectList extends Component {
     }
 
     this.state = {
+      projects: [],
       projectItem: {}
     }
   }
@@ -18,15 +19,12 @@ class ProjectList extends Component {
 
   }
 
-  componentWillUnmount = () => {
-
-  }
-
   componentDidMount = () => {
 
     this.setState({projectItem: this.props.projectItem}, function(){
       console.log(this.state.projectItem)
     })
+
   }
 
   handleTitleChange = (event) => {

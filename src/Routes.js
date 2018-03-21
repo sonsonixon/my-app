@@ -55,7 +55,7 @@ class Routes extends Component {
     this.setState({projects:projects})
   }
 
-  handleupdateProject(projectItem){
+  handleEditProject(projectItem){
     this.setState({projectItem: projectItem})﻿
   }
 
@@ -93,7 +93,7 @@ class Routes extends Component {
     const project = (props) => (
       <Projects
         {...props}
-        updateProject={this.handleupdateProject.bind(this)}
+        editProject={this.handleEditProject.bind(this)}
         projects={this.state.projects}
         deleteProject={this.handleDeleteProject.bind(this)}
       />
@@ -122,7 +122,7 @@ class Routes extends Component {
                 <Route exact path="/projects" component={project} />
                 <Route exact path="/projects/list/:id" component={ProjectItem} />
                 <Route exact path="/projects/add" component={addProject} />
-                <Route exact path="/projects/update" component={editProject} />
+                <Route exact path="/projects/update/:id" component={editProject} />
                 <Route path="/page1/:name" component={Page1} />
                 <Route path="/page2" component={Page2} />
                 <Route path="/redux/counter" component={counter} />
