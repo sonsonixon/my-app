@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 
 
 class Sample extends Component {
+  constructor(){
+    super();
+
+  }
+
+  componentWillMount(){
+
+  }
+
   render() {
     return (
       <div>
