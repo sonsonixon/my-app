@@ -10,7 +10,7 @@ class Header extends Component {
                 <ul className="navbar-nav">
                   <li className="active">
                     <Link className="navbar-brand" to="/">
-                      <img src="http://localhost:8080/public/img/sample-logo.png" width="40" alt="logo" />
+                      <img src="http://localhost/public/img/sample-logo.png" width="40" alt="logo" />
                     </Link>
                   </li>
                 </ul>
@@ -39,6 +39,7 @@ class Header extends Component {
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                       <Link className="dropdown-item" to="/redux/counter"><span className="lead">Counter</span></Link>
                       <Link className="dropdown-item" to="/redux/input"><span className="lead">Input</span></Link>
+                      <Link className="dropdown-item" to="/redux/sample"><span className="lead">Sample Project</span></Link>
                     </div>
                   </li>
                 </ul>

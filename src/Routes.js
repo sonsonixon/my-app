@@ -13,6 +13,7 @@ import Page1 from './Components/Page1';
 import Page2 from './Components/Page2';
 import Counter from './Components/Counter';
 import Input from './Components/Input';
+import Sample from './Components/Sample';
 
 class Routes extends Component {
   constructor(props){
@@ -33,7 +34,7 @@ class Routes extends Component {
   }
 
   getData(){
-    fetch('http://localhost:8080/api/projects/get')
+    fetch('http://localhost/api/projects/get')
       .then(response => response.json())
       .then(json => {
         this.setState({projects: json}, function(){
@@ -111,6 +112,13 @@ class Routes extends Component {
       />
     );
 
+    const sample = (props) => (
+      <Sample
+        {...props}
+      />
+    );
+
+
     return (
       <Router>
         <div>
@@ -127,6 +135,7 @@ class Routes extends Component {
                 <Route path="/page2" component={Page2} />
                 <Route path="/redux/counter" component={counter} />
                 <Route path="/redux/input" component={input} />
+                <Route path="/redux/sample" component={sample} />
               </Main>
             </Provider>
           </Switch>

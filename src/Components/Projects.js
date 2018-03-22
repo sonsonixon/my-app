@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from "react-table";
-//import $ from 'jquery';
 import swal from 'sweetalert';
 
 class Projects extends Component {
@@ -10,8 +9,7 @@ class Projects extends Component {
 
     this.state = {
       projects: [],
-      projectItem: [],
-      id: null,
+      projectItem: []
     };
 
   }
@@ -27,7 +25,6 @@ class Projects extends Component {
       this.props.editProject(this.state.projectItem);
       this.props.history.push('projects/update/'+id)
     })﻿
-
   }
 
   onDelete = (id) => {
@@ -80,7 +77,7 @@ class Projects extends Component {
                   <div className="text-center">
                     <Link className="btn btn-success" to={"/projects/list/" + d.id} ><i className="fa fa-fw fa-eye"></i></Link>
                     &nbsp;&nbsp;
-                    <button className="btn btn-info" onClick={this.onUpdate.bind(this, d.id)}><i className="fa fa-fw fa-pencil"></i></button>
+                    <button className="btn btn-info"   onClick={this.onUpdate.bind(this, d.id)}><i className="fa fa-fw fa-pencil"></i></button>
                     &nbsp;&nbsp;
                     <button onClick={this.onDelete.bind(this, d.id)} className="btn btn-danger"><i className="fa fa-fw fa-trash"></i></button>
                   </div>

@@ -23,7 +23,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     inputChanged: (e) => {
-      console.log('mapDispatchToProps', e.target.value)
       const action = { type: 'INPUT_CHANGE', text: e.target.value};
       dispatch(action);
     }
