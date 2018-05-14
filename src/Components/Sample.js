@@ -9,7 +9,16 @@ class Sample extends Component {
   }
 
   componentWillMount(){
-
+    fetch('http://localhost/api/projects/get')
+      .then(response => response.json())
+      .then(json => {
+        this.setState({projects: json}, function(){
+          console.log(this.state.projects)
+        });
+      })
+      .catch(function(err) {
+        console.log('parsing failed', err)
+      })
   }
 
   render() {

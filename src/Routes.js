@@ -14,56 +14,56 @@ import Page2 from './Components/Page2';
 import Counter from './Components/Counter';
 import Input from './Components/Input';
 import Sample from './Components/Sample';
+import Login from './Components/Login';
 
 class Routes extends Component {
   constructor(props){
-    super(props);
+      super(props);
 
-    this.state = {
-      projects: [],
-      projectItem: []
-    }
-
+      this.state = {
+          projects: [],
+          projectItem: []
+      }
   }
 
   sortByKey(array, key) {
-    return array.sort(function(a, b) {
-      var x = a[key]; var y = b[key];
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
+      return array.sort(function(a, b) {
+          var x = a[key]; var y = b[key];
+          return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      });
   }
 
   getData(){
-    fetch('http://localhost/api/projects/get')
-      .then(response => response.json())
-      .then(json => {
-        this.setState({projects: json}, function(){
-          console.log(this.state.projects)
-        });
-      })
-      .catch(function(err) {
-        console.log('parsing failed', err)
-      })
+      fetch('http://localhost:8081/api/projects/get')
+          .then(response => response.json())
+          .then(json => {
+              this.setState({projects: json}, function(){
+                  console.log(this.state.projects)
+              });
+          })
+          .catch(function(err) {
+              console.log('parsing failed', err)
+          })
   }
 
   componentWillMount(){
-    this.getData();
+      this.getData();
   }
 
   handleAddProject(project){
-    let projects = this.state.projects;
-    projects.push(project);
-    this.setState({projects:projects})
+      let projects = this.state.projects;
+      projects.push(project);
+      this.setState({projects:projects})
   }
 
   handleEditProject(projectItem){
-    this.setState({projectItem: projectItem})﻿
+      this.setState({projectItem: projectItem})﻿
   }
 
   handleDeleteProject(id){
-    this.setState({
-      projects: this.state.projects.filter(p => p.id !== id)
-    })
+      this.setState({
+          projects: this.state.projects.filter(p => p.id !== id)
+      })
   }
 
   /*handleupdateProject(project){
@@ -118,7 +118,6 @@ class Routes extends Component {
       />
     );
 
-
     return (
       <Router>
         <div>
@@ -136,6 +135,7 @@ class Routes extends Component {
                 <Route path="/redux/counter" component={counter} />
                 <Route path="/redux/input" component={input} />
                 <Route path="/redux/sample" component={sample} />
+                <Route exact path="/login" component={Login} />
               </Main>
             </Provider>
           </Switch>

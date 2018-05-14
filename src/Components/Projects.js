@@ -14,7 +14,7 @@ class Projects extends Component {
 
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.setState({projects: this.props.projects})
   }
 

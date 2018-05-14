@@ -10,7 +10,7 @@ class Header extends Component {
                 <ul className="navbar-nav">
                   <li className="active">
                     <Link className="navbar-brand" to="/">
-                      <img src="http://localhost/public/img/sample-logo.png" width="40" alt="logo" />
+                      <h3>React Project</h3>
                     </Link>
                   </li>
                 </ul>
@@ -23,7 +23,7 @@ class Header extends Component {
                       <span className="sr-only">(current)</span>
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item" hidden={false}>
                     <Link className="nav-link" to="/projects">
                       <i className="fa fa-fw fa-briefcase"></i> Projects
                     </Link>
@@ -41,6 +41,12 @@ class Header extends Component {
                       <Link className="dropdown-item" to="/redux/input"><span className="lead">Input</span></Link>
                       <Link className="dropdown-item" to="/redux/sample"><span className="lead">Sample Project</span></Link>
                     </div>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      <i className="fa fa-fw fa-sign-in"></i> Login
+                      <span className="sr-only">(current)</span>
+                    </Link>
                   </li>
                 </ul>
               </div>
